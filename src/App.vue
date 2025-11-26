@@ -28,6 +28,7 @@ import router from './router';
   flex: 1;
   padding: 20px;
   overflow-y: auto;
+  display: block;
 }
 
 .nav-bar {
