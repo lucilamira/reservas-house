@@ -1,11 +1,19 @@
 <script setup>
 import ActionButton from './ActionButton.vue';
 import FormReserva from './FormReserva.vue';
+import { ref } from 'vue';
+
+const showForm = ref(false);
+
+const openForm = () => {
+  showForm.value = true;
+};
 </script>
+
 <template>
   <div class="container">
-    <ActionButton type="primary" label="Añadir Reserva"></ActionButton>
-    <FormReserva />
+    <ActionButton type="primary" label="Añadir Reserva" @click="openForm()"></ActionButton>
+    <FormReserva v-if="showForm.value" />
     <div class="table-container">
       <h3 class="table-title">Reservas</h3>
       <table>
@@ -35,6 +43,7 @@ import FormReserva from './FormReserva.vue';
     </div>
   </div>
 </template>
+
 <style scoped>
 .container {
   display: flex;
