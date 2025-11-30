@@ -50,4 +50,21 @@ button {
 .secondary:active {
   background-color: #999;
 }
+
+.navigation {
+  padding: 10px 20px;
+  background-color: #8b6f47;
+  color: white;
+  font-weight: 500;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.navigation:hover {
+  background-color: #6f5639;
+}
+.navigation:active {
+  background-color: #5a462e;
+}
 </style>

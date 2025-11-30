@@ -4,16 +4,14 @@ import FormReserva from './FormReserva.vue';
 import { ref } from 'vue';
 
 const showForm = ref(false);
-
-const openForm = () => {
-  showForm.value = true;
-};
 </script>
 
 <template>
   <div class="container">
-    <ActionButton type="primary" label="Añadir Reserva" @click="openForm()"></ActionButton>
-    <FormReserva v-if="showForm.value" />
+    <ActionButton type="primary" label="Añadir Reserva" @click="showForm = true"></ActionButton>
+    <!-- <div v-if="showForm"> -->
+    <FormReserva v-model="showForm" />
+    <!-- </div> -->
     <div class="table-container">
       <h3 class="table-title">Reservas</h3>
       <table>
