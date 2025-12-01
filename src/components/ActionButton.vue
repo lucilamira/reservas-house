@@ -17,7 +17,7 @@ button {
 
 .primary {
   padding: 10px 20px;
-  background-color: #347759;
+  background-color: #5b8c5aff;
   color: white;
   font-weight: 500;
   border: none;
@@ -26,16 +26,16 @@ button {
 }
 
 .primary:hover {
-  background-color: #2c5e4a;
+  background-color: #6ba06a;
 }
 
 .primary:active {
-  background-color: #24503e;
+  background-color: #77a776;
 }
 
 .secondary {
   padding: 10px 20px;
-  background-color: #ccc;
+  background-color: #ccdbdcff;
   color: #333;
   font-weight: 500;
   border: none;
@@ -44,16 +44,17 @@ button {
 }
 
 .secondary:hover {
-  background-color: #b3b3b3;
+  background-color: #dbe5e6;
 }
 
 .secondary:active {
-  background-color: #999;
+  background-color: #b6cccd;
 }
 
 .navigation {
+  width: 100%;
   padding: 10px 20px;
-  background-color: #8b6f47;
+  background-color: #596157ff;
   color: white;
   font-weight: 500;
   border: none;
@@ -62,9 +63,9 @@ button {
 }
 
 .navigation:hover {
-  background-color: #6f5639;
+  background-color: #4f564e;
 }
 .navigation:active {
-  background-color: #5a462e;
+  background-color: #454b44;
 }
 </style>

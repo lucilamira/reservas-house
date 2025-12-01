@@ -5,7 +5,7 @@ import router from './router';
 
 <template>
   <div class="header">
-    <h1>House Cardenal del Monte</h1>
+    <h1 class="main-title">House Cardenal del Monte</h1>
   </div>
   <div class="container">
     <Landing class="nav-bar" />
@@ -18,6 +18,12 @@ import router from './router';
   padding: 20px;
   text-align: center;
   border-bottom: 1px solid #ccc;
+}
+
+.main-title {
+  font-size: 32px;
+  color: #52414cff;
+  margin: 0;
 }
 
 .container {

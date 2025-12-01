@@ -71,7 +71,7 @@ td {
 }
 
 th {
-  background-color: #f5f5f5;
+  background-color: #e2dcda;
   font-weight: bold;
 }
 
