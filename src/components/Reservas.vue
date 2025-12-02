@@ -4,40 +4,48 @@ import FormReserva from './FormReserva.vue';
 import { ref } from 'vue';
 
 const showForm = ref(false);
+const reservas = ref([]);
 </script>
 
 <template>
   <div class="container">
     <ActionButton type="primary" label="Añadir Reserva" @click="showForm = true"></ActionButton>
-    <!-- <div v-if="showForm"> -->
-    <FormReserva v-model="showForm" />
-    <!-- </div> -->
+    <FormReserva v-model="showForm" v-model:reservas="reservas" />
+
     <div class="table-container">
       <h3 class="table-title">Reservas</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Fecha</th>
-            <th>Descripcion</th>
-            <th>Cliente</th>
-            <th>Estado</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>2024-07-01</td>
-            <td>Cumpleaños de 1</td>
-            <td>Juan Pérez</td>
-            <td>Confirmada</td>
-          </tr>
-          <tr>
-            <td>2025-12-06</td>
-            <td>Despedida de soltera</td>
-            <td>Noelia Gomez</td>
-            <td>Pendiente</td>
-          </tr>
-        </tbody>
-      </table>
+      <div v-if="reservas.length > 0">
+        <table>
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Descripcion</th>
+              <th>Cliente</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(reserva, index) in reservas" :key="index">
+              <td>{{ reserva.date }}</td>
+              <td>{{ reserva.description }}</td>
+              <td>{{ reserva.clientName }}</td>
+              <td>{{ reserva.status }}</td>
+              <td>
+                <img
+                  @click="reservas.splice(index, 1)"
+                  class="delete-icon"
+                  width="24"
+                  height="24"
+                  src="https://img.icons8.com/color/24/delete-forever.png"
+                  alt="delete-forever"
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="no-data" v-else>No hay reservas disponibles. Añade una para empezar</div>
     </div>
   </div>
 </template>
@@ -78,5 +86,17 @@ th {
 button {
   display: block;
   margin-bottom: 20px;
+}
+
+.delete-icon {
+  cursor: pointer;
+}
+
+.no-data {
+  text-align: left;
+  padding: 20px;
+  color: #52414cff;
+  font-size: 20px;
+  font-weight: 400;
 }
 </style>
