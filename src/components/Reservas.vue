@@ -2,9 +2,11 @@
 import ActionButton from './ActionButton.vue';
 import FormReserva from './FormReserva.vue';
 import { ref } from 'vue';
+import { useReservasStore } from '../stores/reservas';
+
+const reservasStore = useReservasStore();
 
 const showForm = ref(false);
-const reservas = ref([]);
 </script>
 
 <template>
@@ -14,7 +16,7 @@ const reservas = ref([]);
 
     <div class="table-container">
       <h3 class="table-title">Reservas</h3>
-      <div v-if="reservas.length > 0">
+      <div v-if="reservasStore.reservas.length > 0">
         <table>
           <thead>
             <tr>
@@ -26,19 +28,29 @@ const reservas = ref([]);
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(reserva, index) in reservas" :key="index">
+            <tr v-for="(reserva, index) in reservasStore.reservas" :key="index">
               <td>{{ reserva.date }}</td>
               <td>{{ reserva.description }}</td>
               <td>{{ reserva.clientName }}</td>
               <td>{{ reserva.status }}</td>
-              <td>
+              <td class="actions-container">
+                <div class="tooltip">Editar</div>
+                <router-link :to="`/reserva/${index}`">
+                  <img
+                    class="icon"
+                    width="24"
+                    height="24"
+                    src="https://img.icons8.com/ios/50/edit-file.png"
+                    alt="edit-file"
+                /></router-link>
+                <div class="tooltip">Eliminar</div>
                 <img
-                  @click="reservas.splice(index, 1)"
-                  class="delete-icon"
+                  class="icon"
+                  @click="reservasStore.deleteReserva(index)"
                   width="24"
                   height="24"
-                  src="https://img.icons8.com/color/24/delete-forever.png"
-                  alt="delete-forever"
+                  src="https://img.icons8.com/ios-glyphs/30/filled-trash.png"
+                  alt="filled-trash"
                 />
               </td>
             </tr>
@@ -88,7 +100,7 @@ button {
   margin-bottom: 20px;
 }
 
-.delete-icon {
+.icon {
   cursor: pointer;
 }
 
@@ -98,5 +110,23 @@ button {
   color: #52414cff;
   font-size: 20px;
   font-weight: 400;
+}
+
+.actions-container {
+  display: flex;
+  gap: 10px;
+}
+
+.tooltip {
+  visibility: hidden;
+  width: 60px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%; /* Position the tooltip above the icon */
 }
 </style>

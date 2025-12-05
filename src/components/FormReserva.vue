@@ -1,16 +1,19 @@
 <script setup>
 import ActionButton from './ActionButton.vue';
 import { ref } from 'vue';
+import { useReservasStore } from '../stores/reservas';
 
 const formOpen = defineModel({ type: Boolean, default: false });
+const reservasStore = useReservasStore();
+
 const date = ref(new Date().toISOString().split('T')[0]);
 const description = ref('');
 const clientName = ref('');
 const clientEmail = ref('');
 const clientPhone = ref('');
+const totalAmount = ref('');
+const guestCount = ref('');
 const status = ref('');
-
-const reservas = defineModel('reservas', { type: Array, default: [] });
 
 function cancel() {
   formOpen.value = false;
@@ -29,8 +32,7 @@ function save() {
     status: status.value,
   };
 
-  reservas.value.push(reserva);
-  console.log('lista de reservas:', reservas.value);
+  reservasStore.addReserva(reserva);
   formOpen.value = false;
   clearForm();
 }
