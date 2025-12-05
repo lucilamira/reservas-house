@@ -95,9 +95,11 @@ function clearForm() {
 
 .form-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: auto auto;
   grid-template-rows: repeat(6, auto);
-  gap: 1rem;
+  justify-content: start;
+  column-gap: 4rem;
+  row-gap: 1rem;
   margin-top: 1rem;
 }
 </style>
