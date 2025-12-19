@@ -4,14 +4,13 @@ import { useReservasStore } from '../stores/reservas';
 import { computed } from 'vue';
 import ActionButton from './ActionButton.vue';
 
-// const route = useRoute();
+const route = useRoute();
 const reservasStore = useReservasStore();
-// const reservaId = route.params.id;
+const reservaId = route.params.id;
 
 const reserva = computed(() => reservasStore.getReserva(reservaId));
 
 function cancel() {
-  // Navigate back to the reservas list
   window.history.back();
 }
 

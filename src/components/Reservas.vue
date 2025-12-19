@@ -1,18 +1,21 @@
 <script setup>
 import ActionButton from './ActionButton.vue';
 import FormReserva from './FormReserva.vue';
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useReservasStore } from '../stores/reservas';
 
 const reservasStore = useReservasStore();
-
 const showForm = ref(false);
+
+onMounted(async () => {
+  await reservasStore.fetchReservas();
+});
 </script>
 
 <template>
   <div class="container">
     <ActionButton type="primary" label="Añadir Reserva" @click="showForm = true"></ActionButton>
-    <FormReserva v-model="showForm" v-model:reservas="reservas" />
+    <FormReserva v-model="showForm" />
 
     <div class="table-container">
       <h3 class="table-title">Reservas</h3>
@@ -28,14 +31,14 @@ const showForm = ref(false);
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(reserva, index) in reservasStore.reservas" :key="index">
+            <tr v-for="reserva in reservasStore.reservas" :key="reserva.id">
               <td>{{ reserva.date }}</td>
               <td>{{ reserva.description }}</td>
               <td>{{ reserva.clientName }}</td>
               <td>{{ reserva.status }}</td>
               <td class="actions-container">
                 <div class="tooltip">Editar</div>
-                <router-link :to="`/reserva/${index}`">
+                <router-link :to="`/reserva/${reserva.id}`">
                   <img
                     class="icon"
                     width="24"
@@ -46,7 +49,7 @@ const showForm = ref(false);
                 <div class="tooltip">Eliminar</div>
                 <img
                   class="icon"
-                  @click="reservasStore.deleteReserva(index)"
+                  @click="reservasStore.deleteReserva(reserva.id)"
                   width="24"
                   height="24"
                   src="https://img.icons8.com/ios-glyphs/30/filled-trash.png"
