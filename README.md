@@ -262,27 +262,6 @@ firebase deploy --only hosting
 - [ ] Dashboard con estadísticas
 - [ ] Notificaciones por email
 
-## Troubleshooting
-
-### Error: "Missing or insufficient permissions"
-
-**Solución**: Actualizar reglas de Firestore en Firebase Console
-
-### Error: "await is not defined"
-
-**Solución**: Asegurarse de usar `async` en funciones que usan `await`
-
-### Los cambios no se reflejan después del deploy
-
-**Solución**:
-
-1. Hacer `npm run build` antes de deploy
-2. Limpiar caché del navegador (Ctrl+Shift+R)
-
-### Las reservas no se cargan
-
-**Solución**: Verificar que `fetchReservas()` se llame en `onMounted`
-
 ## Contacto y Soporte
 
 Para consultas o reportar issues, contactar al equipo de desarrollo.
